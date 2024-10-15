@@ -25,12 +25,25 @@ const checkLength = () => {
     return input.innerText.length < MAX_LENGTH;
 }
 
+const changeInputFont = (inputText) => {
+    if (inputText.length > FIRST_BREAKPOINT) {
+        input.style.fontSize = "30px";
+    }
+    if (inputText.length > SECOND_BREAKPOINT) {
+        input.style.fontSize = "20px";
+    }
+    if (inputText.length <= FIRST_BREAKPOINT) {
+        input.style.fontSize = "40px";
+    }
+}
+
 const addNumber = (e) => {
     if (checkLength()) {
         if (input.innerText === "0") {
             input.innerText = e.target.innerText;
         } else {
             input.innerText += e.target.innerText;
+            changeInputFont(input.innerText);
         }
     }
 };
@@ -83,6 +96,7 @@ dot.addEventListener("click", addDot);
 
 const clearInput = () => {
     input.innerText = "0";
+    input.style.fontSize = "40px";
 };
 
 deleteAll.addEventListener("click", clearInput);
@@ -92,6 +106,7 @@ const deleteLast = () => {
         input.innerText = "0";
     } else {
         input.innerText = input.innerText.substring(0, input.innerText.length - 1);
+        changeInputFont(input.innerText);
     }
 };
 
@@ -100,6 +115,7 @@ deleteButton.addEventListener("click", deleteLast);
 const evaluate = () => {
     let evaluated = eval(input.innerText);
     evaluated = Math.round(evaluated * 10000000000) / 10000000000;
+    changeInputFont(String(evaluated));
     input.innerText = evaluated;
 }
 
