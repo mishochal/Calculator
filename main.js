@@ -60,6 +60,9 @@ const isValidDot = () => {
 
 const addDot = () => {
     if (isValidDot()) {
+        if (isOperator(input.innerText[input.innerText.length - 1])) {
+            input.innerText += "0";
+        }
         input.innerText += ".";
     }
 };
