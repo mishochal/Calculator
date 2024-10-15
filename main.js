@@ -84,3 +84,10 @@ const deleteLast = () => {
 };
 
 deleteButton.addEventListener("click", deleteLast);
+
+const evaluate = () => {
+    let evaluated = eval(input.innerText);
+    input.innerText = evaluated;
+}
+
+equalButton.addEventListener("click", evaluate);
