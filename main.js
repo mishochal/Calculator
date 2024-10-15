@@ -17,11 +17,21 @@ const replacedOperators = [
     { operator: "÷", replaced: "/" }
 ];
 
+const MAX_LENGTH = 28;
+const FIRST_BREAKPOINT = 13;
+const SECOND_BREAKPOINT = 18;
+
+const checkLength = () => {
+    return input.innerText.length < MAX_LENGTH;
+}
+
 const addNumber = (e) => {
-    if (input.innerText === "0") {
-        input.innerText = e.target.innerText;
-    } else {
-        input.innerText += e.target.innerText;
+    if (checkLength()) {
+        if (input.innerText === "0") {
+            input.innerText = e.target.innerText;
+        } else {
+            input.innerText += e.target.innerText;
+        }
     }
 };
 
@@ -34,14 +44,16 @@ const isOperator = (symbol) => {
 }
 
 const addOperator = (e) => {
-    let calcOperator = e.target.innerText;
-    let replacedOperator = replacedOperators.find((element) => element.operator === calcOperator).replaced;
-    if (!isOperator(input.innerText[input.innerText.length - 1])) {
-        input.innerText += replacedOperator;
-    } else {
-        input.innerText =
-            input.innerText.substring(0, input.innerText.length - 1) +
-            replacedOperator;
+    if (checkLength()) {
+        let calcOperator = e.target.innerText;
+        let replacedOperator = replacedOperators.find((element) => element.operator === calcOperator).replaced;
+        if (!isOperator(input.innerText[input.innerText.length - 1])) {
+            input.innerText += replacedOperator;
+        } else {
+            input.innerText =
+                input.innerText.substring(0, input.innerText.length - 1) +
+                replacedOperator;
+        }
     }
 };
 
@@ -87,6 +99,7 @@ deleteButton.addEventListener("click", deleteLast);
 
 const evaluate = () => {
     let evaluated = eval(input.innerText);
+    evaluated = Math.round(evaluated * 10000000000) / 10000000000;
     input.innerText = evaluated;
 }
 
