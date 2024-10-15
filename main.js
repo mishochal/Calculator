@@ -16,3 +16,16 @@ const replacedOperators = [
     { operator: "×", replaced: "*" },
     { operator: "÷", replaced: "/" }
 ];
+
+const addNumber = (e) => {
+    if (input.innerText === "0") {
+        input.innerText = e.target.innerText;
+    } else {
+        input.innerText += e.target.innerText;
+        changeInputFont(input.innerText);
+    }
+};
+
+numbers.forEach((number) => {
+    number.addEventListener("click", addNumber);
+});
