@@ -22,10 +22,29 @@ const addNumber = (e) => {
         input.innerText = e.target.innerText;
     } else {
         input.innerText += e.target.innerText;
-        changeInputFont(input.innerText);
     }
 };
 
 numbers.forEach((number) => {
     number.addEventListener("click", addNumber);
+});
+
+const isOperator = (symbol) => {
+    return replacedOperators.some(({ replaced }) => symbol === replaced);
+}
+
+const addOperator = (e) => {
+    let calcOperator = e.target.innerText;
+    let replacedOperator = replacedOperators.find((element) => element.operator === calcOperator).replaced;
+    if (!isOperator(input.innerText[input.innerText.length - 1])) {
+        input.innerText += replacedOperator;
+    } else {
+        input.innerText =
+            input.innerText.substring(0, input.innerText.length - 1) +
+            replacedOperator;
+    }
+};
+
+operators.forEach((operator) => {
+    operator.addEventListener("click", addOperator);
 });
