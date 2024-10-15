@@ -48,3 +48,20 @@ const addOperator = (e) => {
 operators.forEach((operator) => {
     operator.addEventListener("click", addOperator);
 });
+
+const isValidDot = () => {
+    let inputText = input.innerText;
+    let operands = inputText.split(/[-+*\/]/g);
+    let lastOperand = operands[operands.length - 1];
+    return input.innerText.length > 0 &&
+        input.innerText[input.innerText.length - 1] != "." &&
+        !(lastOperand.includes("."));
+}
+
+const addDot = () => {
+    if (isValidDot()) {
+        input.innerText += ".";
+    }
+};
+
+dot.addEventListener("click", addDot);
