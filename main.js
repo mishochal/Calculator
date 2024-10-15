@@ -68,3 +68,19 @@ const addDot = () => {
 };
 
 dot.addEventListener("click", addDot);
+
+const clearInput = () => {
+    input.innerText = "0";
+};
+
+deleteAll.addEventListener("click", clearInput);
+
+const deleteLast = () => {
+    if (input.innerText.length === 1) {
+        input.innerText = "0";
+    } else {
+        input.innerText = input.innerText.substring(0, input.innerText.length - 1);
+    }
+};
+
+deleteButton.addEventListener("click", deleteLast);
