@@ -127,6 +127,7 @@ body {
     border: none;
     font-size: 40px;
     color: #cde7ec;
+    cursor: pointer;
 }
 
 .btn:active {
